@@ -6,8 +6,9 @@ import org.aeonbits.owner.Config.LoadType;
 @LoadPolicy(LoadType.MERGE)
 @Config.Sources({
   "system:properties",
+  "system:env",
+  "classpath:grid.properties",
   "classpath:environment.properties",
-  "classpath:grid.properties"
 })
 public interface EnvironmentConfig extends Config {
   @Key("target")
@@ -19,15 +20,15 @@ public interface EnvironmentConfig extends Config {
   @Key("headless")
   Boolean headless();
 
-  @Key("url.base")
+  @Key("url_base")
   String url();
 
   @Key("timeout")
   int timeout();
 
-  @Key("grid.url")
+  @Key("grid_url")
   String gridUrl();
 
-  @Key("grid.port")
+  @Key("grid_port")
   String gridPort();
 }

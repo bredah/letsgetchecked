@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.remote.AbstractDriverOptions;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.bonigarcia.wdm.config.DriverManagerType;
@@ -14,7 +15,7 @@ public enum BrowserFactory {
   CHROME {
     @Override
     public WebDriver createDriver() {
-      WebDriverManager.getInstance(DriverManagerType.CHROME).browserVersion("browserVersion")
+      WebDriverManager.getInstance(DriverManagerType.CHROME)
           .setup();
       return new ChromeDriver(getOptions());
     }
@@ -38,9 +39,12 @@ public enum BrowserFactory {
 
     @Override
     public FirefoxOptions getOptions() {
+      var profile = new FirefoxProfile();
+      profile.setPreference("intl.accept_languages", "en");
       var firefoxOptions = new FirefoxOptions();
       firefoxOptions.addArguments(START_MAXIMIZED);
       firefoxOptions.setHeadless(environment().headless());
+      firefoxOptions.setProfile(profile);
       return firefoxOptions;
     }
   };

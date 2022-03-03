@@ -35,7 +35,7 @@ public abstract class PageObject {
   }
 
   protected void waitUntil(ExpectedCondition<WebElement> expectedConditions) {
-    new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(10)).until(expectedConditions);
+    new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(15)).until(expectedConditions);
   }
 
   protected String regexExtractValue(String regex, String text) {

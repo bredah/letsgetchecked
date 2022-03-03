@@ -24,8 +24,14 @@ public class DriverManager {
   public static String getInfo() {
     var capabilities = ((RemoteWebDriver) DriverManager.getDriver()).getCapabilities();
     String browserName = capabilities.getBrowserName();
-    var platform = capabilities.getPlatformName().toString();
-    return String.format("browser: %s platform: %s", browserName, platform);
+    var version = capabilities.getBrowserVersion();
+    return String.format("browser: %s v.%s", browserName, version);
   }
+
+  public static String getPlatform() {
+    var capabilities = ((RemoteWebDriver) DriverManager.getDriver()).getCapabilities();
+    return capabilities.getPlatformName().toString().toLowerCase();
+  }
+
 
 }
